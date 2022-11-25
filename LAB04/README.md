@@ -1,0 +1,5 @@
+1.Zaproponować algorytm szukania liczb doskonałych w zbiorze liczb ⟨2,30⟩.   
+2.Zaproponować   algorytmy   zamiany   liczb   między   systemami   dziesiętnym   i   binarnym.  
+4.Zaproponować algorytm obliczania średniej ważonej.    
+5.Zaproponować algorytm sprawdzania, czy dany ciąg znaków jest palindromem.   
+6.Napisać program, który sprawdza, czy podany PESEL jest poprawny. Aby to zrobić należy:-pierwszą cyfrę pomnożyć przez 1,-drugą cyfrę pomnożyć przez 3,-trzecią cyfrę pomnożyć przez 7,-czwarta cyfrę pomnożyć przez 9,-piątą cyfrę pomnożyć przez 1,-szóstą cyfrę pomnożyć przez 3,-siódmą cyfrę pomnożyć przez 7,-ósmą cyfrę pomnożyć przez 9,-dziewiątą cyfrę pomnożyć przez 1,-dziesiątą cyfrę pomnożyć przez 3,-jedenastą cyfrę pomnożyć przez 1.Tak uzyskane 11 iloczynów należy dodać do siebie. Jeśli ostatnia cyfra tej sumy jest zerem, to podany PESEL jest prawidłowy.  
