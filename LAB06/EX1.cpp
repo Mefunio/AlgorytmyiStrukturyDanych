@@ -8,12 +8,12 @@ void print(int tablica[], int rozmiar) {
 }
 void sort(int tablica[], int rozmiar) {
     int i, j, min;
-    for(i = 0; i < rozmiar - 1; i++) {             //rozmiar -1 bo tablice liczy sie od 0
+    for(i = 0; i < rozmiar - 1; i++) {            
         min = i;
-        for(j = i+1; j < rozmiar; j++)             //porownanie liczby z reszta
-            if(tablica[j] < tablica[min])          //(tu zmienic znak) gdy okaze sie mniejsza zostanie zapisana
+        for(j = i+1; j < rozmiar; j++)            
+            if(tablica[j] < tablica[min])         
                 min = j;
-        swap(tablica[i], tablica[min]);      // na koniec obie liczby sa zamienione
+        swap(tablica[i], tablica[min]);      
     }
 }
 int main() {
