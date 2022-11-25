@@ -1,0 +1,4 @@
+1.Zaproponować algorytm sprawdzania czy z podanych długości boków można utworzyć trójkąt oraz, jeśli to możliwe, obliczania jego pola i obwodu.  
+3.Zaproponować algorytm obliczania i wypisania n pierwszych wyrazów ciągu Fibonacciego.  
+4.Zaproponować   algorytm   obliczania   sumy,   różnicy,   iloczynu   oraz   ilorazu   dwóch   liczb. Zabezpieczyć algorytm przed dzieleniem przez 0.    
+5.Zaproponować algorytm zgadywania wcześniej wylosowanej liczby z zakresu ⟨1,15⟩. Przy każdej próbie odgadnięcia należy informować, czy szukana liczba jest mniejsza czy większa od podanej, a także zliczać próby.  
