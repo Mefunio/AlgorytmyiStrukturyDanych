@@ -1,0 +1,1 @@
+1.Przeanalizować wyżej przedstawiony kod. Na jego podstawie napisać własny program implementujący kolejkę, nie należy jednak wykorzystywać tablicy.
