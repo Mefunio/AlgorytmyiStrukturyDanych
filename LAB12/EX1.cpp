@@ -1,113 +1,48 @@
 #include <iostream>
-
+#include <string>
 using namespace std;
-
-// Struktura reprezentująca pojedynczy element stosu
-struct element {
-    int value;
-    element* next;
-};
-
-// Struktura reprezentująca cały stos
-struct stos {
-    element* head;
-};
-
-// Inicjalizacja pustego stosu
-void init(stos& s) {
-    s.head = nullptr;
+string szyfruj(string tekst, int klucz) {
+string szyfr = "";
+int ASCII;
+char znak;
+for (int i = 0; i < tekst.length(); i++) { //Pętla trwa przez ilość literek
+ASCII = (int)tekst[i] + klucz;
+if (ASCII > 122) ASCII -= 26; //zawijanie alfabetu
+else if ((ASCII > 90 and ASCII < 97)) ASCII -= 26;
+znak = (char) ASCII; //Nowa literka jest przypisywana znakowi
+szyfr += znak; //Dodanie znaku do string szyfr
 }
-
-// Sprawdzenie, czy stos jest pusty
-// Const oznacza, że funkcja nie może zmieniać stanu kolejki,
-// co oznacza, że nie może dodawać lub usuwać elementów ani modyfikować ich wartości.
-// Jest to ważne, ponieważ zapobiega to niepożądanym zmianom w stanie kolejki podczas jej wyświetlania.
-bool isEmpty(const stos& s) {
-    return s.head == nullptr;
+return szyfr;
 }
-
-// Dodanie elementu do stosu
-void add(stos& s, int value) {
-    auto item = new element{ value, s.head }; // auto samo ustala typ zmiennej
-    s.head = item;
+string deszyfruj(string szyfer, int klucz) {
+string tekst = "";
+int kod_ascii;
+char znak;
+for (int i = 0; i < szyfer.length(); i++) {
+kod_ascii = (int)szyfer[i] - klucz;
+if (kod_ascii < 97 and kod_ascii > 90) kod_ascii += 26;
+else if (kod_ascii < 65 ) kod_ascii += 26;
+znak = (char) kod_ascii;
+tekst += znak;
 }
-
-// Pobranie elementu ze stosu
-int pobierz(stos& s) {
-
-    auto item = s.head;
-    int value = item->value; //wyswietl value
-    cout << item->value;
-    s.head = item->next;
-    delete item;
-    return value;
-
+return tekst;
 }
-
-// Wypisanie zawartości stosu, pętla iteruje przez elementy stosu,
-// aż do momentu, gdy item jest równe nullptr, czyli nie ma już więcej elementów na stosie.
-// W każdej iteracji pętli wypisywana jest wartość elementu i ustawiany jest wskaźnik item na element pod nim.
-void print(const stos& s) {
-    cout << "Zawartość stosu: ";
-    for (auto item = s.head; item != nullptr; item = item->next) {
-        cout << item->value << " ";
-    }
-    cout << endl;
+int main()
+{
+string text;
+int klucz;
+bool encrypt;
+cout << "Wpisz tekst do zaszyfrowania lub odszyfrowania: ";
+getline(cin, text);
+cout << "Wpisz klucz (1-25): ";
+cin >> klucz;
+cout << "szyfruj (1) lub deszyfruj (0): ";
+cin >> encrypt;
+if (encrypt == 1) {
+cout << "Zaszyfrowane: " << szyfruj(text, klucz) << endl;
 }
-
-int main() {
-    stos s;
-    init(s);
-
-    cout << "Podaj jedną z instrukcji:\n"
-         << "d - aby dodać liczbę do stosu\n"
-         << "u - aby usunąć liczbę ze stosu\n"
-         << "w - aby wyświetlić zawartość stosu\n"
-         << "x - aby zakończyć\n";
-
-    char wybor;
-    bool exit = true;
-    while (exit) {
-        cin >> wybor;
-        switch (wybor) {
-
-            case 'd':
-                while (true) {
-                    cout << "Podaj liczbę (0 - zakończ wprowadzanie): ";
-                    int value;
-                    cin >> value;
-                    if (value == 0) {
-                        break;
-                    }
-                    add(s, value);
-                    print(s);
-                }
-                break;
-            case 'u':
-                if (isEmpty(s)) {
-                    cout << "Stos jest pusty, nie można usunąć elementów." << endl;
-
-                    print(s);
-                }
-                else {
-                    cout << "Ile elementów chcesz usunąć ze stosu? ";
-                    int count;
-                    cin >> count;
-
-                    for (int i = 0; i < count; i++) {
-                        pobierz(s);
-                        cout << " ";
-                    }
-                    cout << " Zostało usunięte!" << endl;
-                }
-                break;
-            case 'w':
-                print(s);
-                break;
-            case 'x':
-                exit = false;
-                break;
-        }
-    }
-    return 0;
+else {
+cout << "Zdeszyfrowane: " << deszyfruj(text, klucz) << endl;
+}
+return 0;
 }
