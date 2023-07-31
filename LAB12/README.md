@@ -1,3 +1,5 @@
-1.Przeanalizować wyżej przedstawiony kod. Na jego podstawie napisać własny program implementujący stos, nie należy jednak wykorzystywać tablicy.
+1.Zaproponować algorytm kodowania i dekodowania napisów szyfrem Cezara. Przedstawić go w postaci schematu blokowego, a następnie napisać program, który zrealizuje działanie algorytmu. Podczas implementacji wykorzystać rzutowanie typów:
 
-2.Wykorzystując nową implementację stosu, napisać program obliczający wartość wyrażenia podanego w ONP.
+int kod_ascii;
+char znak = 'a';
+znak = (char) kod_ascii;
