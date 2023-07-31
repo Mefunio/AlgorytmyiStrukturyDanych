@@ -1,113 +1,79 @@
 #include <iostream>
-
+#include <vector>
 using namespace std;
-
-// Struktura reprezentująca pojedynczy element stosu
-struct element {
-    int value;
-    element* next;
-};
-
-// Struktura reprezentująca cały stos
-struct stos {
-    element* head;
-};
-
-// Inicjalizacja pustego stosu
-void init(stos& s) {
-    s.head = nullptr;
-}
-
-// Sprawdzenie, czy stos jest pusty
-// Const oznacza, że funkcja nie może zmieniać stanu kolejki,
-// co oznacza, że nie może dodawać lub usuwać elementów ani modyfikować ich wartości.
-// Jest to ważne, ponieważ zapobiega to niepożądanym zmianom w stanie kolejki podczas jej wyświetlania.
-bool isEmpty(const stos& s) {
-    return s.head == nullptr;
-}
-
-// Dodanie elementu do stosu
-void add(stos& s, int value) {
-    auto item = new element{ value, s.head }; // auto samo ustala typ zmiennej
-    s.head = item;
-}
-
-// Pobranie elementu ze stosu
-int pobierz(stos& s) {
-
-    auto item = s.head;
-    int value = item->value; //wyswietl value
-    cout << item->value;
-    s.head = item->next;
-    delete item;
-    return value;
-
-}
-
-// Wypisanie zawartości stosu, pętla iteruje przez elementy stosu,
-// aż do momentu, gdy item jest równe nullptr, czyli nie ma już więcej elementów na stosie.
-// W każdej iteracji pętli wypisywana jest wartość elementu i ustawiany jest wskaźnik item na element pod nim.
-void print(const stos& s) {
-    cout << "Zawartość stosu: ";
-    for (auto item = s.head; item != nullptr; item = item->next) {
-        cout << item->value << " ";
-    }
-    cout << endl;
-}
-
+void menu_pol();
 int main() {
-    stos s;
-    init(s);
-
-    cout << "Podaj jedną z instrukcji:\n"
-         << "d - aby dodać liczbę do stosu\n"
-         << "u - aby usunąć liczbę ze stosu\n"
-         << "w - aby wyświetlić zawartość stosu\n"
-         << "x - aby zakończyć\n";
-
-    char wybor;
-    bool exit = true;
-    while (exit) {
-        cin >> wybor;
-        switch (wybor) {
-
-            case 'd':
-                while (true) {
-                    cout << "Podaj liczbę (0 - zakończ wprowadzanie): ";
-                    int value;
-                    cin >> value;
-                    if (value == 0) {
-                        break;
-                    }
-                    add(s, value);
-                    print(s);
-                }
-                break;
-            case 'u':
-                if (isEmpty(s)) {
-                    cout << "Stos jest pusty, nie można usunąć elementów." << endl;
-
-                    print(s);
-                }
-                else {
-                    cout << "Ile elementów chcesz usunąć ze stosu? ";
-                    int count;
-                    cin >> count;
-
-                    for (int i = 0; i < count; i++) {
-                        pobierz(s);
-                        cout << " ";
-                    }
-                    cout << " Zostało usunięte!" << endl;
-                }
-                break;
-            case 'w':
-                print(s);
-                break;
-            case 'x':
-                exit = false;
-                break;
-        }
-    }
-    return 0;
+ bool loop = true;
+ char ins;
+ cout << "Tworzymy wektor" << endl;
+ vector<int> wektor;
+ while (loop) {
+ menu_pol();
+ cin >> ins;
+ int i=0;
+ switch(ins) {
+ case 'd':
+ cout<<"Podaj liczbę jaką chcesz dodać do wektora:\n";
+ cin>>i;
+ wektor.push_back(i);
+ break;
+ case 'u':
+ cout<<"Usunięcie elementu na końcu wektora:\n";
+ wektor.pop_back();
+ break;
+ case 'p':
+ cout<<"Wartości skrajne:\n";
+ cout<<"Element pierwszy: "<<wektor.front()<<endl;
+ cout<<"Element ostatni: "<<wektor.back()<<endl;
+ break;
+ case 'n':
+ cout<<"Podaj który chcesz wybrać element z wektora:\n";
+ cin>>i;
+ cout<<i<<" element wektora:";
+ cout<<wektor[i-1]<<endl;
+ break;
+ case 's':
+ cout<<"Szukaj elementu:\n";
+ cin>>i;
+ if (count(wektor.begin(), wektor.end(), i)>0) {
+ cout << "Element znajduje się w wektorze\n";
+ }
+ else{
+ cout<<"Podany element nie znajduje się w wektorze\n";
+ }
+ break;
+ case 'w':
+ cout<<"Wielkość wektora: ";
+ cout<<wektor.size()<<endl;
+ break;
+ case 'e':
+ cout<<"Czy wektor jest pusty?:\n";
+ if(wektor.empty()){
+ cout<<"Wektor jest pusty";
+ }
+ else{
+ cout<<"Wektor nie jest pusty";
+ }
+ break;
+ case 'x':
+ cout<<"Wyjście z programu";
+ loop=0;
+ break;
+ default:
+ cout<<"Wprowadzono złą opcję!";
+ loop=0;
+ break;
+ }
+ }
+ return 0;
 }
+ void menu_pol(){
+ cout << "Podaj instrukcję:" << endl;
+ cout << "d - dodaj element na koniec wektora " << endl;
+ cout << "u - usuń element z końca wektora" << endl;
+ cout << "p - wyświetl wartości skrajne" << endl;
+ cout << "n - Wyświetl n-ty elemnet z wektora" << endl;
+ cout << "s - Sprawdź czy element należy do struktury" << endl;
+ cout << "w - Pokaż wielkość wektora" << endl;
+ cout << "x - Wyjdź z programu" << endl;
+ }
