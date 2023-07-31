@@ -1,0 +1,1 @@
+1.Napisać   program,   który   wczyta   pliki,   wykona   sortowania   i   wypisze   czasy   wykonania sortowania dla wszystkich algorytmów sortujących. Pomiary powtórzyć 3 krotnie (należy sortować liczby trzykrotnie).
